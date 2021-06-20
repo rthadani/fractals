@@ -2,6 +2,7 @@
   (:require [quil.core :as q]
             [complex.core :as c]
             [core.mandelbrot :refer :all] 
+            [core.julia :refer :all] 
             [core.protocols :refer [surface-width surface-height iteration pixel-color]])
   (:gen-class))
 
@@ -33,14 +34,24 @@
   :size [300 300]
   :draw draw)
 
-#_ (create-sketch (->Mandelbrot  (c/complex -2.1 -1.4) 
+#_ (create-sketch (->Mandelbrot  (c/complex -2.25 -1.5) 
                                  3.0 
-                                 3.1 
+                                 3.0 
                                  1000
                                  1000 
                                  10
-                                 32
-                                 2.0))
+                                 512
+                                 4.0))
+
+#_ (create-sketch (->Julia  (c/complex -2 -2)
+                            (c/complex -0.35 0.65)
+                            4.0
+                            4.0
+                            1000
+                            1000
+                            10
+                            80
+                            4.0))
 
 (defn -main
   "I don't do a whole lot ... yet."

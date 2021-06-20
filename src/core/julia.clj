@@ -1,9 +1,9 @@
-(ns core.mandelbrot
+(ns core.julia
   (:require [core.protocols :refer [Fractal width height surface-height surface-width]]
             [complex.core :as cm]))
 
 
-(defrecord Mandelbrot [c w h sw sh min-iter max-iter max-mag]
+(defrecord Julia [z c w h sw sh min-iter max-iter max-mag]
   Fractal
   (width [_] w)
   (height [_] h)
@@ -11,10 +11,10 @@
   (surface-height [_] sh)
   (iteration
     [this offset-x offset-y]
-    (let [x (+ (cm/real-part c) (* (width this) (/ offset-x (surface-width this))))
-          y (+ (cm/imaginary-part c) (* (height this) (/ offset-y (surface-height this))))
-          c (cm/complex x y)]
-    (loop [z c 
+    (let [x (+ (cm/real-part z) (* (width this) (/ offset-x (surface-width this))))
+          y (+ (cm/imaginary-part z) (* (height this) (/ offset-y (surface-height this))))
+          z (cm/complex x y)]
+    (loop [z z 
            i 0]
     (if (or (> (cm/abs z) max-mag) (> i max-iter))
       (if (zero? i) i (dec i))
