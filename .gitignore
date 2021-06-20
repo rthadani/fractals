@@ -11,3 +11,5 @@
 .hg/
 pom.xml
 .lsp
+output.calva-repl
+.keep
